@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      <title>Excel To MongoDB</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <style rel="stylesheet">
+        .headerdiv{
+        height: 80px;
+        background-color: blanchedalmond;
+        }
+        .headerdiv input{
+        line-height: 6;
+        }
+        .spacediv{
+        height: 20px;
+        }
+        table thead {
+        background-color: lightseagreen;
+        }
+      </style>
+    </head>
+    <body>      
+      <form action="/uploadfile" enctype="multipart/form-data" method="post">
+        <div class="headerdiv">         
+        <input type="file" name="uploadfile" accept='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel' >
+        <input type="submit" value="Upload Excel">
+      </div>
+      </form>  
+    </body>
+</html>
