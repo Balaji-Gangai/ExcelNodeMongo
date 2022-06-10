@@ -1,0 +1,21 @@
+{
+  "name": "excel-node-mongodb",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "convert-excel-to-json": "^1.7.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "^2.6.9",
+    "ejs": "~2.6.1",
+    "express": "^4.16.4",
+    "http-errors": "~1.6.3",
+    "mongodb": "^4.6.0",
+    "mongoose": "^6.3.4",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.4-lts.1"
+  }
+}

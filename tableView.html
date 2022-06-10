@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Excel To MongoDB</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
+    </script>
+    <link rel="stylesheet"
+        href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script type="text/javascript">
+        /* Formatting function for row details - modify as you need */
+        function format(d) {
+            // `d` is the original data object for the row
+            return (
+                '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+                '<tr>' +
+                '<td>Edition Name:</td>' +
+                '<td>' +
+                d['Edition Name'] +
+                '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>Connect Type:</td>' +
+                '<td>' +
+                d['Connect Type'] +
+                '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td>Question Type:</td>' +
+                '<td>'+d['Question Type']+'</td>' +
+                '</tr>' +
+                '</table>'
+            );
+        }
+        var dataSet;
+        $(document).ready(function () {
+           var table = $('#tableview').DataTable({
+                ajax: {
+                    url: 'http://localhost:3000/api/getAllData',
+                    dataSrc: function (json) {
+                        console.log(json);
+                        return json;
+                    }
+                },
+                lengthMenu: [
+                    [10, 20, 50, -1],
+                    [10, 20, 50, 'All'],
+                ],
+                columns: [{
+                        className: 'dt-control',
+                        orderable: false,
+                        data: null,
+                        defaultContent: '',
+                    },
+                    {
+                        title: 'Question Name',
+                        data: 'Question Name'
+                    },
+                    // {
+                    //     title: 'Edition Name',
+                    //     data: 'Edition Name'
+                    // },
+                    // {
+                    //     title: 'Connect Type',
+                    //     data: 'Connect Type'
+                    // },
+                    // {
+                    //     title: 'Question Type',
+                    //     data: 'Question Type'
+                    // },
+                    // {
+                    //     title: 'Static Changes',
+                    //     data: 'Static Changes'
+                    // },
+                    // {
+                    //     title: 'Algo Changes',
+                    //     data: 'Algo Changes'
+                    // },
+                    // {
+                    //     title: 'Question Format',
+                    //     data: 'Question Format'
+                    // },
+                    // {
+                    //     title: 'Learning Assets',
+                    //     data: 'Learning Assets'
+                    // },
+                    // {
+                    //     title: 'Topic 1',
+                    //     data: 'Topic 1'
+                    // }
+                ],
+                order: [
+                    [1, 'asc']
+                ],
+            });
+
+            // Add event listener for opening and closing details
+            $('#tableview tbody').on('click', 'td.dt-control',
+                function () {
+                    var tr = $(this).closest('tr');
+                    var row = table.row(tr);
+
+                    if (row.child.isShown()) {
+                        // This row is already open - close it
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    } else {
+                        // Open this row
+                        row.child(format(row.data())).show();
+                        tr.addClass('shown');
+                    }
+                });
+
+        });
+    </script>
+    <style rel="stylesheet">
+        .headerdiv {
+            height: 80px;
+            background-color: blanchedalmond;
+        }
+
+        .headerdiv input {
+            line-height: 6;
+        }
+
+        .spacediv {
+            height: 20px;
+        }
+
+        table thead {
+            background-color: lightseagreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="spacediv"></div>
+    <table id="tableview" class="display" width="100%"></table>
+</body>
+
+</html>
