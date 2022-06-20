@@ -3,7 +3,7 @@ const {
 } = require("mongodb");
 const app = require("../app");
 // Connection URI
-const uri = "mongodb+srv://balaji:{password}@123@cluster0.zr7tx.mongodb.net/?retryWrites=true&w=majority";
+const uri = "mongodb+srv://balaji:Gbkamali@123@cluster0.zr7tx.mongodb.net/?retryWrites=true&w=majority";
 // Create a new MongoClient
 const client = new MongoClient(uri);
 var dbconnected;
